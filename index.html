@@ -20,14 +20,30 @@
             var input1 = document.getElementById("input1").value.toLowerCase();
             var input2 = document.getElementById("input2").value.toLowerCase();
 
-            var sortedInput1 = input1.split("").sort().join("");
-            var sortedInput2 = input2.split("").sort().join("");
+            var w1 = input1.toLowerCase().replaceAll(" ", "");
+            var w2 = input2.toLowerCase().replaceAll(" ", "");
 
-            if (sortedInput1 === sortedInput2) {
-                document.getElementById("result").textContent = "The words are anagrams.";
-            } else {
-                document.getElementById("result").textContent = "The words are not anagrams.";
+           if(w1.length != w2.length) {
+            document.getElementById("result").innerHTML = "Not Anagram";
+            return;
+           }
+
+           let count = 0;
+
+           for(let i = 0; i < w1.length; i++) {
+            for(let j = 0; j < w2.length; j++) {
+                if(w1[i] == w2[j]) {
+                    count++;
+                    break;
+                }
             }
+           }
+
+           if(count == w1.length) {
+            document.getElementById("result").innerHTML = " yes its is anagram";
+           } else {
+            document.getElementById("result").innerHTML = "Not Anagram";
+           }
         }
     </script>
     
