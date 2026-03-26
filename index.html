@@ -14,38 +14,48 @@
     <button onclick="checkAnagram()">check anagram</button>
     <p id="result"></p>
 
-    <script>
+<script>
 
-        function checkAnagram() {
-            var input1 = document.getElementById("input1").value.toLowerCase();
-            var input2 = document.getElementById("input2").value.toLowerCase();
+function checkAnagram() {
 
-            var w1 = input1.toLowerCase().replaceAll(" ", "");
-            var w2 = input2.toLowerCase().replaceAll(" ", "");
+    var input1 = document.getElementById("input1").value.toLowerCase();
+    var input2 = document.getElementById("input2").value.toLowerCase();
 
-           if(w1.length != w2.length) {
-            document.getElementById("result").innerHTML = "Not Anagram";
-            return;
-           }
+    var w1 = input1.replaceAll(" ", "");
+    var w2 = input2.replaceAll(" ", "");
 
-           let count = 0;
+    if (w1.length != w2.length) {
+        document.getElementById("result").innerHTML = "Not Anagram";
+        return;
+    }
 
-           for(let i = 0; i < w1.length; i++) {
-            for(let j = 0; j < w2.length; j++) {
-                if(w1[i] == w2[j]) {
-                    count++;
-                    break;
-                }
+    // convert w2 to array so we can change values
+    var arr2 = w2.split("");
+
+    let count = 0;
+
+    for (let i = 0; i < w1.length; i++) {
+
+        for (let j = 0; j < arr2.length; j++) {
+
+            if (w1[i] == arr2[j]) {
+                count++;
+
+             
+                arr2[j] = "*";
+                break;
             }
-           }
-
-           if(count == w1.length) {
-            document.getElementById("result").innerHTML = " yes its is anagram";
-           } else {
-            document.getElementById("result").innerHTML = "Not Anagram";
-           }
         }
-    </script>
+    }
+
+    if (count == w1.length) {
+        document.getElementById("result").innerHTML = "Yes it is Anagram";
+    } else {
+        document.getElementById("result").innerHTML = "Not Anagram";
+    }
+}
+
+</script>
     
 </body>
 </html>
